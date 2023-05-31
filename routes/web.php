@@ -23,3 +23,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/painel','App\Http\Controllers\PainelController@index');
 Route::get('/json','App\Http\Controllers\PainelController@indexJson');
+
+Route::post('/select','App\Http\Controllers\PainelController@BackupList');
+
+
+Route::get('/teste','App\Http\Controllers\PainelController@teste');
+

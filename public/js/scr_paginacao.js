@@ -53,19 +53,27 @@ function montarPaginator(data) {
 }
 function montarLinha(banco) {
     if(banco.status_bkp == 1){
-        statusString = '  <th scope="row"><div class="tm-status-circle moving"></div>Gravando</th>';
+        statusString = '  <td scope="row"><div class="tm-status-circle moving"></div>Gravando</td>';
+        gifString = '     <td scope="row"></td>';
+
     }else{
-        statusString = '  <th scope="row"><div class="tm-status-circle cancelled"></div>Parado</th>';
+        statusString = '  <td scope="row"><div class="tm-status-circle cancelled"></div>Parado</td>';
+        gifString = '     <td scope="row"> </td>';
     }
     
     return '<tr>' +
+    '  <td>'+' # '+ + banco.id_backup + '</td>' +
         statusString +
         '  <td>' + banco.dbname + '</td>' +
         '  <td>' + banco.hostname + '</td>' +
         '  <td>' + banco.descricao + '</td>' +
-        '  <td><a href="' + banco.banco_id +
-        ' ">Grava</a> | <a href="' + banco.banco_id +
-        ' ">Para</a></td>' +
+        '  <td><a href="' + banco.id_backup +
+        ' "><i class="far fa-caret-square-right" style="font-size:23px; color:#32CD32" title="Gravar"></i></a>' +
+        '<a href="' + banco.id_backup +
+        ' "><i class="fas fa-pause" style="font-size: 23px; color:#1E90FF; margin-left:8px;" title="Pausar"></i></a>' +
+        '<a href="' + banco.id_backup + 
+        ' "><i class="far fa-trash-alt" style="font-size: 23px; color:#B22222; margin-left:8px;" title="Excluir"></i></a></td>' +
+        gifString +
         '</tr>';
 }
 function montarTabela(data) {
