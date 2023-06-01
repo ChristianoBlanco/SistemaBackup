@@ -23,6 +23,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/painel','App\Http\Controllers\PainelController@index');
 Route::get('/json','App\Http\Controllers\PainelController@indexJson');
+Route::get('/grava/{id}/{id2}','App\Http\Controllers\PainelController@trocaStatus');
+
+Route::get('/pausa/{id}/{id2}','App\Http\Controllers\PainelController@trocaStatus');
+Route::get('/softDelete/{id}/{id2}','App\Http\Controllers\PainelController@trocaStatus');
 
 Route::post('/select','App\Http\Controllers\PainelController@BackupList');
 

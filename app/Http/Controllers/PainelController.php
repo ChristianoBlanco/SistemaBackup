@@ -12,6 +12,11 @@ class PainelController extends Controller
 
     public function index()
     {
+        /* $listaTabla = DB::table('bancos AS b')->select('c.id AS id_backup','c.banco_id', 'c.status_bkp', 'b.id', 'b.dbname', 'b.hostname', 'b.descricao')
+        ->join('backups AS c', 'c.banco_id', '=', 'b.id')
+        ->whereIn('c.status_bkp', [1, 2]); */
+
+        //Seleciona os itens que compoe o select
         $selects = banco::all();
 
         return view('painel', compact('selects'));
@@ -22,8 +27,8 @@ class PainelController extends Controller
         //return "Index Painel de Listagem de Gravações Backup";
         //return view('painel');
 
-        $listaTabla = DB::table('bancos AS b')->select('c.id AS id_backup','c.banco_id', 'c.status_bkp', 'b.id', 'b.dbname', 'b.hostname', 'b.descricao')
-        ->join('backups AS c', 'c.banco_id', '=', 'b.id')
+        $listaTabla = DB::table('bancos AS b')->select('c.id AS id_backup', 'c.banco_id', 'c.status_bkp', 'b.id', 'b.dbname', 'b.hostname', 'b.descricao', 'b.username', 'b.password')
+            ->join('backups AS c', 'c.banco_id', '=', 'b.id')
             ->whereIn('c.status_bkp', [1, 2])
             ->paginate(10);
 
@@ -57,7 +62,19 @@ class PainelController extends Controller
 
     }
 
-    
+    public function trocaStatus($id, $id2)
+    {
+        
+        if ($id2 == 1) { //Altera para modo gravação
+            backup::where('id', $id)->update(['status_bkp' => '2']);
+        }
+        if ($id2 == 2) { //Altera para modo pausa
+            backup::where('id', $id)->update(['status_bkp' => '1']);
+
+        }
+
+        return redirect('/painel');
+    }
 
     public function teste()
     {

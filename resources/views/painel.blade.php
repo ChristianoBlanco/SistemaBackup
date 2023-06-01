@@ -3,7 +3,11 @@
 @section('content')
 
 <div class="container">
-
+<?php 
+    //Caminho do path onde está a função de backup: classBackup.php
+    require_once './myfunctions/classBackup.php';
+    
+?>
     <!-- row -->
     <div class="row">
         <div class="col">
