@@ -1,6 +1,8 @@
 <?php
 function backupDatabaseAllTables($dbhost, $dbusername, $dbpassword, $dbname, $db_id_bkp, $tables = '*')
 {
+    date_default_timezone_set('America/Sao_Paulo');
+
     $db = new mysqli($dbhost, $dbusername, $dbpassword, $dbname);
 
     if ($tables == '*') {
@@ -63,11 +65,13 @@ function backupDatabaseAllTables($dbhost, $dbusername, $dbpassword, $dbname, $db
     $handle = fopen('./BACKUP_BD/' . $db_id_bkp . '#' . $bd_name . '/' . $ano . '/' . $bd_name . $data . $hora . $min . $seg . '.sql', 'w+');
     fwrite($handle, $return);
     fclose($handle);
-    echo "Database Export Successfully!";
+    //echo "Database Export Successfully!";
 }
 
 function rodaGravacao()
 {
+    date_default_timezone_set('America/Sao_Paulo');
+
     $mysqli = new mysqli("localhost", "root", "", "sisbackup2");
 
     if ($mysqli->connect_error) {
@@ -81,8 +85,14 @@ function rodaGravacao()
                               WHERE C.status_bkp = '1' ");
 
     while ($row = $result->fetch_assoc()) {
-        echo "<br>" . $row['id_backup'];
-        backupDatabaseAllTables($row['hostname'], $row['username'], $row['password'], $row['dbname'], $row['id_backup']);
+        if ($row['status_bkp'] == 1) {
+            $row['id_backup'];
+            echo "<script>window.setTimeout('location.reload()', 10000);</script>";
+            backupDatabaseAllTables($row['hostname'], $row['username'], $row['password'], $row['dbname'], $row['id_backup']);            
+        }
+        
     }
 }
+
 rodaGravacao();
+

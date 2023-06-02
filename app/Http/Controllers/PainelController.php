@@ -58,18 +58,18 @@ class PainelController extends Controller
 
         }
 
-        return redirect('/painel');
+        return view('/painel');
 
     }
 
     public function trocaStatus($id, $id2)
     {
         
-        if ($id2 == 1) { //Altera para modo gravação
-            backup::where('id', $id)->update(['status_bkp' => '2']);
+        if ($id2 == 1) { //Altera para modo parar
+            backup::where('id', $id)->update(['status_bkp' => '2' ]);
         }
-        if ($id2 == 2) { //Altera para modo pausa
-            backup::where('id', $id)->update(['status_bkp' => '1']);
+        if ($id2 == 2) { //Altera para modo gravar
+            backup::where('id', $id)->update(['status_bkp' => '1' ]);
 
         }
 
@@ -78,7 +78,7 @@ class PainelController extends Controller
 
     public function teste()
     {
-
+       return view('teste');
     }
 
 }
