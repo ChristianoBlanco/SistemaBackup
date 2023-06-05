@@ -87,12 +87,16 @@ function rodaGravacao()
     while ($row = $result->fetch_assoc()) {
         if ($row['status_bkp'] == 1) {
             $row['id_backup'];
-            echo "<script>window.setTimeout('location.reload()', 10000);</script>";
+            sleep(2);
+            echo "<script>var intervalo = setInterval(function() { $('#setTimePainel').load('/painel'); }, 240000);</script>";
             backupDatabaseAllTables($row['hostname'], $row['username'], $row['password'], $row['dbname'], $row['id_backup']);            
         }
         
     }
 }
+echo "<div id='setTimePainel'>";
+  rodaGravacao();
+echo "</div>";
+?>
 
-rodaGravacao();
 
