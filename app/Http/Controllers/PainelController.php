@@ -16,10 +16,10 @@ class PainelController extends Controller
         ->join('backups AS c', 'c.banco_id', '=', 'b.id')
         ->whereIn('c.status_bkp', [1, 2]); */
 
-        //Seleciona os itens que compoe o select
+        //Seleciona os itens que compoe o select da página painel
         $selects = banco::all();
 
-        return view('painel', compact('selects'));
+        return view('/painel', compact('selects'));
 
     }
     public function indexJson()
@@ -57,8 +57,10 @@ class PainelController extends Controller
             $bacukps->save();
 
         }
+        //Seleciona os itens que compoe o select da página painel
+        $selects = banco::all();
 
-        return view('/painel');
+        return view('/painel', compact('selects'));
 
     }
 

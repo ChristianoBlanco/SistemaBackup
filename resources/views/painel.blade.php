@@ -17,7 +17,7 @@
         <!-- Button trigger modal -->
         <div style="width: 200px; margin-top:30px;" >
        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#exampleModal" >
-           Adicionar Banco
+           Adicionar Gravação
        </button>
        </div>
 
@@ -26,7 +26,7 @@
        <div class="modal-dialog" role="document">
          <div class="modal-content">
            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Adicionar Banco</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Selecione o Banco</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -38,7 +38,7 @@
                     <select id="selBanco" class="custom-select col-md-11" name="SelBanco" style="margin-left: 20px; margin-bottom: 15px;" required>
                         <option selected></option>
                         @foreach ($selects as $select)
-                            <option value="{{ $select->id }}">{{ $select->dbname }}</option>
+                            <option value="{{ $select->id }}">{{ $select->name }}</option>
                         @endforeach
                     </select>
 

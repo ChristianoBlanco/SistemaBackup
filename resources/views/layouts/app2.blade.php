@@ -56,7 +56,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Banco de dados</a>
-                                <a class="dropdown-item" href="#">Usuários</a>
+                                <a class="dropdown-item" href="{{ route('register') }}">Usuários</a>
                             </div>
                         </li>
                         <!--li class="nav-item">
@@ -89,9 +89,15 @@
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link d-block" href="login.html">
-                                Admin, <b>Logout</b>
-                            </a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                             {{ __('Logout') }}
+                         </a>
+
+                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                             @csrf
+                         </form>
                         </li>
                     </ul>
                 </div>
