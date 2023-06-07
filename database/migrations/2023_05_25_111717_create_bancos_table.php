@@ -15,6 +15,7 @@ class CreateBancosTable extends Migration
     {
         Schema::create('bancos', function (Blueprint $table) {
             $table->id();
+            $table->string('name', '50');
             $table->string('hostname', '50');
             $table->string('username', '50');
             $table->string('password', '50');
