@@ -37,7 +37,8 @@ Route::post('/select','App\Http\Controllers\PainelController@BackupList');
 //Rotas Controler painel de cadastro de bancos de dados
 Route::get('/painelBanco','App\Http\Controllers\bancoController@index');
 Route::get('/jsonBanco','App\Http\Controllers\bancoController@indexJson');
-Route::get('/cadBanco','App\Http\Controllers\bancoController@store');
+Route::get('/cadBanco','App\Http\Controllers\bancoController@create');
+//Route::post('/cadBanco','App\Http\Controllers\bancoController@store');
 
 
 Route::get('/teste','App\Http\Controllers\PainelController@teste');

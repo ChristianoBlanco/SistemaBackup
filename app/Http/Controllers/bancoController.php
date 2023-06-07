@@ -36,7 +36,7 @@ class bancoController extends Controller
     public function create()
     {
 
-        
+        return view('/cadbanco');
     }
 
     /**
@@ -48,11 +48,11 @@ class bancoController extends Controller
     public function store(Request $request)
     {
         $bancos = new banco();
-        $bancos->name = $request->input('name');
-        $bancos->hostname = $request->input('host');
-        $bancos->username = $request->input('username');
-        $bancos->password = $request->input('password');
-        $bancos->dbname = $request->input('dbname');
+        $bancos->name =      $request->input('name');
+        $bancos->hostname =  $request->input('host');
+        $bancos->username =  $request->input('username');
+        $bancos->password =  $request->input('password');
+        $bancos->dbname =    $request->input('dbname');
         $bancos->descricao = $request->input('descricao');
         $bancos->save();
         
