@@ -49,7 +49,7 @@ class bancoController extends Controller
     {
         $bancos = new banco();
         $bancos->name =      $request->input('name');
-        $bancos->hostname =  $request->input('host');
+        $bancos->hostname =  $request->input('hostname');
         $bancos->username =  $request->input('username');
         $bancos->password =  $request->input('password');
         $bancos->dbname =    $request->input('dbname');
@@ -78,7 +78,11 @@ class bancoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bancos = banco::where('id',$id)->first();
+        if(isset($bancos)){
+            return view('/cadbanco', compact('bancos'));
+        }
+        return redirect('/painelBanco');
     }
 
     /**

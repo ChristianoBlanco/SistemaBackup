@@ -38,7 +38,8 @@ Route::post('/select','App\Http\Controllers\PainelController@BackupList');
 Route::get('/painelBanco','App\Http\Controllers\bancoController@index');
 Route::get('/jsonBanco','App\Http\Controllers\bancoController@indexJson');
 Route::get('/cadBanco','App\Http\Controllers\bancoController@create');
-//Route::post('/cadBanco','App\Http\Controllers\bancoController@store');
+Route::post('/cadBanco-inc','App\Http\Controllers\bancoController@store');
+Route::get('/cadBanco-edt/{id}','App\Http\Controllers\bancoController@edit');
 
 
 Route::get('/teste','App\Http\Controllers\PainelController@teste');

@@ -19,7 +19,11 @@
 
     <div class="col-12 tm-block-col">
         <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-            
+            @if (session('msg_status'))
+             <div id="mensagem" class="alert alert-success" autofocus>
+               {{ session('msg_status') }}
+            </div>
+            @endif
             <table class="table" id="tabelaGravacoes">
                 <thead>
                     <tr>

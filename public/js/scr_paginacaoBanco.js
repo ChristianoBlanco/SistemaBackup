@@ -58,9 +58,9 @@ function montarLinha(banco) {
         '  <td>' + banco.name + '</td>' +
         '  <td>' + banco.hostname + '</td>' +
         '  <td>' + banco.descricao + '</td>' +
-        '  <td><a href="' + banco.id +
+        '  <td><a href="/cadBanco-edt/' + banco.id +
         ' "><i class="fa fa-edit" style="font-size: 23px; color:#1E90FF; margin-left:8px;" title="Editar"></i></a>  ' + 
-        ' <a href="' + banco.id +
+        ' <a href="/cadBanco-edt/' + banco.id +
         ' " onclick="softDelete()"><i class="far fa-trash-alt" style="font-size: 23px; color:#B22222; margin-left:8px;" title="Excluir"></i></a></td>' +
         '</tr>';
 }
