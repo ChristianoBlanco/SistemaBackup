@@ -39,7 +39,10 @@ Route::get('/painelBanco','App\Http\Controllers\bancoController@index');
 Route::get('/jsonBanco','App\Http\Controllers\bancoController@indexJson');
 Route::get('/cadBanco','App\Http\Controllers\bancoController@create');
 Route::post('/cadBanco-inc','App\Http\Controllers\bancoController@store');
-Route::get('/cadBanco-edt/{id}','App\Http\Controllers\bancoController@edit');
+Route::get('/ediBanco-edt/{id}','App\Http\Controllers\bancoController@edit');
+Route::post('/ediBanco-upd/{id}','App\Http\Controllers\bancoController@update');
+Route::get('/delBanco-hard/{id}','App\Http\Controllers\bancoController@destroy');
+//Route::get('/delBanco-soft/{id}','App\Http\Controllers\bancoController@softdelete');
 
 
 Route::get('/teste','App\Http\Controllers\PainelController@teste');

@@ -80,7 +80,7 @@ class bancoController extends Controller
     {
         $bancos = banco::where('id',$id)->first();
         if(isset($bancos)){
-            return view('/cadbanco', compact('bancos'));
+            return view('/edibanco', compact('bancos'));
         }
         return redirect('/painelBanco');
     }
@@ -94,7 +94,17 @@ class bancoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $bancos = banco::find($id);
+
+        $bancos->name =      $request->input('name');
+        $bancos->hostname =  $request->input('hostname');
+        $bancos->username =  $request->input('username');
+        $bancos->password =  $request->input('password');
+        $bancos->dbname =    $request->input('dbname');
+        $bancos->descricao = $request->input('descricao');
+        $bancos->save();
+        
+        return redirect('/painelBanco')->with('msg_status', 'Dados alterados com sucesso !');
     }
 
     /**
@@ -105,6 +115,9 @@ class bancoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $bancos = banco::find($id);
+        $bancos->forcedelete();
+
+        return redirect('/painelBanco')->with('msg_status', 'Exclusão realizada com sucesso !');
     }
 }

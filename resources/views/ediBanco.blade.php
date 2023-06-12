@@ -13,7 +13,7 @@
         
       <div class="col-12 tm-block-col">
         <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-           <form method="POST" action="{{ url('/cadBanco-inc')}}" enctype="multipart/form-data" >
+          <form method="POST" action="{{ url('/ediBanco-upd/'.$bancos->id.'')}}" enctype="multipart/form-data" >
                 @csrf 
             <div class="form-group col-lg-6" style="float:left" >
               <label for="name">Nome do banco (apelido)</label>
@@ -21,6 +21,7 @@
                 id="name"
                 name="name"
                 type="text"
+                value="{{ $bancos->name }}"
                 class="form-control"
               />
             </div>
@@ -30,6 +31,7 @@
                 id="hostname"
                 name="hostname"
                 type="text"
+                value="{{ $bancos->hostname }}"
                 class="form-control"
               />
             </div>
@@ -39,6 +41,7 @@
                 id="username"
                 name="username"
                 type="text"
+                value="{{ $bancos->username }}"
                 class="form-control"
               />
             </div>
@@ -48,6 +51,7 @@
                 id="password"
                 name="password"
                 type="text"
+                value="{{ $bancos->password }}"
                 class="form-control"
               />
             </div>
@@ -57,6 +61,7 @@
                 id="dbname"
                 name="dbname"
                 type="text"
+                value="{{ $bancos->dbname }}"
                 class="form-control"
               />
             </div>
@@ -66,13 +71,14 @@
                   id="descricao"
                   name="descricao"
                   type="text"
+                  value="{{ $bancos->descricao }}"
                   class="form-control"
                   maxlength="30"
                 />
               </div>
         
             <div class="col-2">
-              <input type="submit" class="btn btn-primary btn-block text-uppercase" name="bt_grava" value="Gravar" />
+              <input type="submit" class="btn btn-primary btn-block text-uppercase" name="bt_grava" value="Atualizar" />
             </div>
           </form>
         </div>
