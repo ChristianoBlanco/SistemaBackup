@@ -95,6 +95,8 @@ function carregarClientes(pagina) { //Função que pega do JSON as informações
 $(function () {
     carregarClientes(1);
 });
-function softDelete() {
-    confirm("Confirmar exclusão ?");
-}
+function Delete() {
+
+  confirm("Confirmar Exclusão ?");
+
+} 

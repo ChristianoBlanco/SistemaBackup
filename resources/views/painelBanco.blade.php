@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="container" id="container">
+    
     <!-- row -->
     <div class="row">
         <div class="col">
@@ -13,7 +14,6 @@
         <div style="width: 200px; margin-top:30px;" >
            <a href="{{ url('/cadBanco')}}" class="btn btn-success btn-block">Adicionar BD</a>
        </div>
-
 
     </div>
 
