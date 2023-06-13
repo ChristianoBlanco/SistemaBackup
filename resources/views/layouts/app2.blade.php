@@ -92,7 +92,8 @@
                             <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                           document.getElementById('logout-form').submit();">
-                             {{ __('Logout') }}
+                              <div style="float: left;">{{ @Auth::user()->name }}</div>            
+                              <div style="float: left; margin-left: 25px; margin-top:2px; font-size:13px; color:gold">:: {{ __('Logout') }} ::</div>
                          </a>
 
                          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

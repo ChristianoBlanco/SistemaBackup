@@ -17,8 +17,8 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::get('/register', function () {
-    return view('auth.register');
+Route::get('/register', function (){
+    return view('auth.register'); // Não alterar essa linha !!1 Faz parte do Auth do Laravel. Só fazer alteração caso necessário.
 });
 
 Auth::routes();
@@ -27,23 +27,23 @@ Auth::routes();
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Rotas Controller painel de gravação de backups
-Route::get('/painel','App\Http\Controllers\PainelController@index');
-Route::get('/json','App\Http\Controllers\PainelController@indexJson');
-Route::get('/grava/{id}/{id2}','App\Http\Controllers\PainelController@trocaStatus');
-Route::get('/pausa/{id}/{id2}','App\Http\Controllers\PainelController@trocaStatus');
-Route::get('/softDelete/{id}/{id2}','App\Http\Controllers\PainelController@trocaStatus');
-Route::post('/select','App\Http\Controllers\PainelController@BackupList');
+Route::get('/painel','App\Http\Controllers\PainelController@index')->middleware(['auth']);
+Route::get('/json','App\Http\Controllers\PainelController@indexJson')->middleware(['auth']);
+Route::get('/grava/{id}/{id2}','App\Http\Controllers\PainelController@trocaStatus')->middleware(['auth']);
+Route::get('/pausa/{id}/{id2}','App\Http\Controllers\PainelController@trocaStatus')->middleware(['auth']);
+Route::get('/softDelete/{id}/{id2}','App\Http\Controllers\PainelController@trocaStatus')->middleware(['auth']);
+Route::post('/select','App\Http\Controllers\PainelController@BackupList')->middleware(['auth']);
 
 //Rotas Controler painel de cadastro de bancos de dados
-Route::get('/painelBanco','App\Http\Controllers\bancoController@index');
-Route::get('/jsonBanco','App\Http\Controllers\bancoController@indexJson');
-Route::get('/cadBanco','App\Http\Controllers\bancoController@create');
-Route::post('/cadBanco-inc','App\Http\Controllers\bancoController@store');
-Route::get('/ediBanco-edt/{id}','App\Http\Controllers\bancoController@edit');
-Route::post('/ediBanco-upd/{id}','App\Http\Controllers\bancoController@update');
-Route::get('/delBanco-hard/{id}','App\Http\Controllers\bancoController@destroy');
+Route::get('/painelBanco','App\Http\Controllers\bancoController@index')->middleware(['auth']);
+Route::get('/jsonBanco','App\Http\Controllers\bancoController@indexJson')->middleware(['auth']);
+Route::get('/cadBanco','App\Http\Controllers\bancoController@create')->middleware(['auth']);
+Route::post('/cadBanco-inc','App\Http\Controllers\bancoController@store')->middleware(['auth']);
+Route::get('/ediBanco-edt/{id}','App\Http\Controllers\bancoController@edit')->middleware(['auth']);
+Route::post('/ediBanco-upd/{id}','App\Http\Controllers\bancoController@update')->middleware(['auth']);
+Route::get('/delBanco-hard/{id}','App\Http\Controllers\bancoController@destroy')->middleware(['auth']);
 //Route::get('/delBanco-soft/{id}','App\Http\Controllers\bancoController@softdelete');
 
 
-Route::get('/teste','App\Http\Controllers\PainelController@teste');
+//Route::get('/teste','App\Http\Controllers\PainelController@teste');
 

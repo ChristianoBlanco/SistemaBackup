@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\DB;
 class PainelController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         /* $listaTabla = DB::table('bancos AS b')->select('c.id AS id_backup','c.banco_id', 'c.status_bkp', 'b.id', 'b.dbname', 'b.hostname', 'b.descricao')
@@ -66,21 +71,25 @@ class PainelController extends Controller
 
     public function trocaStatus($id, $id2)
     {
-        
+
         if ($id2 == 1) { //Altera para modo parar
-            backup::where('id', $id)->update(['status_bkp' => '2' ]);
+            backup::where('id', $id)->update(['status_bkp' => '2']);
         }
         if ($id2 == 2) { //Altera para modo gravar
-            backup::where('id', $id)->update(['status_bkp' => '1' ]);
+            backup::where('id', $id)->update(['status_bkp' => '1']);
 
         }
 
         return redirect('/painel');
     }
 
+    public function cadregister(){
+        return view('auth.register');
+    }
+
     public function teste()
     {
-       return view('teste');
+        return view('teste');
     }
 
 }
