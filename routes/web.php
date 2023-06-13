@@ -31,8 +31,8 @@ Route::get('/painel','App\Http\Controllers\PainelController@index')->middleware(
 Route::get('/json','App\Http\Controllers\PainelController@indexJson')->middleware(['auth']);
 Route::get('/grava/{id}/{id2}','App\Http\Controllers\PainelController@trocaStatus')->middleware(['auth']);
 Route::get('/pausa/{id}/{id2}','App\Http\Controllers\PainelController@trocaStatus')->middleware(['auth']);
-Route::get('/softDelete/{id}/{id2}','App\Http\Controllers\PainelController@trocaStatus')->middleware(['auth']);
-Route::post('/select','App\Http\Controllers\PainelController@BackupList')->middleware(['auth']);
+Route::get('/delbackup-soft/{id}','App\Http\Controllers\PainelController@destroy')->middleware(['auth']);
+Route::post('/cadBackup','App\Http\Controllers\PainelController@store')->middleware(['auth']);
 
 //Rotas Controler painel de cadastro de bancos de dados
 Route::get('/painelBanco','App\Http\Controllers\bancoController@index')->middleware(['auth']);
@@ -45,5 +45,5 @@ Route::get('/delBanco-hard/{id}','App\Http\Controllers\bancoController@destroy')
 //Route::get('/delBanco-soft/{id}','App\Http\Controllers\bancoController@softdelete');
 
 
-//Route::get('/teste','App\Http\Controllers\PainelController@teste');
+Route::get('/teste','App\Http\Controllers\PainelController@teste');
 

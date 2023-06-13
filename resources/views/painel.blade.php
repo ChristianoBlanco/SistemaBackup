@@ -32,7 +32,7 @@
         </div>
         <div class="modal-body">
             
-                <form method="POST" action="{{ url('/select')}}" enctype="multipart/form-data" >
+                <form method="POST" action="{{ url('/cadBackup')}}" enctype="multipart/form-data" >
                     @csrf
                     <select id="selBanco" class="custom-select col-md-11" name="SelBanco" style="margin-left: 20px; margin-bottom: 15px;" required>
                         <option selected></option>

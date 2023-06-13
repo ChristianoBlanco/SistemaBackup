@@ -44,30 +44,28 @@ class PainelController extends Controller
 
     }
 
-    public function BackupList(Request $request)
-    {
-        //Post vindo do Select do modal da página: /painel
-        $id = $request->input('SelBanco');
+    public function store(Request $request){
 
-        //Seleciona o banco de dados para colocar na tabela de gravações
-        $selTabela = DB::table('bancos AS b')->select('b.*')
-            ->where('b.id', $id)->get();
+          //Post vindo do Select do modal da página: /painel
+          $id = $request->input('SelBanco');
 
-        foreach ($selTabela as $res) {
-            //$res->id;
-            //Insere na tabela backups o banco_id e o status default da gravação
-            $bacukps = new backup();
-            $bacukps->banco_id = $res->id;
-            $bacukps->status_bkp = 2;
-            $bacukps->save();
-
-        }
-        //Seleciona os itens que compoe o select da página painel
-        $selects = banco::all();
-
-        return view('/painel', compact('selects'));
-
+          //Seleciona o banco de dados para colocar na tabela de gravações
+          $selTabela = DB::table('bancos AS b')->select('b.*')
+              ->where('b.id', $id)->get();
+  
+          foreach ($selTabela as $res) {
+              //$res->id;
+              //Insere na tabela backups o banco_id e o status default da gravação
+              $bacukps = new backup();
+              $bacukps->banco_id = $res->id;
+              $bacukps->status_bkp = 2;
+              $bacukps->save();
+              
+          }
+          return redirect('/painel');
     }
+
+   
 
     public function trocaStatus($id, $id2)
     {
@@ -83,8 +81,12 @@ class PainelController extends Controller
         return redirect('/painel');
     }
 
-    public function cadregister(){
-        return view('auth.register');
+    public function destroy($id)
+    {
+        $backups = backup::find($id);
+        $backups->forcedelete();
+
+        return redirect('/painel');
     }
 
     public function teste()

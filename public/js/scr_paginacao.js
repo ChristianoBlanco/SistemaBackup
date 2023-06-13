@@ -57,6 +57,7 @@ function montarLinha(banco) {
         gifString = '     <td scope="row"><img src="../img/gif/gravacao.gif" alt="gracacao" width="28" height="28" /></td>';
         botaoGrava = '  <td><a href=" ' ;
         botaoSalva = '<a href="/pausa/' + banco.id_backup + '/' + banco.status_bkp ;
+   
         
     }else{
         statusString = '  <td scope="row"><div class="tm-status-circle cancelled"></div>Parado</td>';
@@ -77,7 +78,7 @@ function montarLinha(banco) {
         ' "><i class="far fa-caret-square-right" style="font-size:23px; color:#32CD32" title="Gravar"></i></a>' +
          botaoSalva +
         ' "><i class="fas fa-pause" style="font-size: 23px; color:#1E90FF; margin-left:8px;" title="Pausar"></i></a>' +
-        '<a href="' + banco.id_backup + 
+        '<a href="delbackup-soft/' + banco.id_backup + 
         ' "><i class="far fa-trash-alt" style="font-size: 23px; color:#B22222; margin-left:8px;" title="Excluir"></i></a></td>' +
         gifString +
         '</tr>';

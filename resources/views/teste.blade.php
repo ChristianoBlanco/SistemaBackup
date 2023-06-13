@@ -22,9 +22,14 @@
   
 } */
 
-var intervalo = setInterval(function() { $('#setTimePainel').load('/teste'); }, 1000);
+//var intervalo = setInterval(function() { $('#setTimePainel').load('/teste'); }, 1000);
+
+
+
 
 </script>
+<div id="chat"></div>
+
 
 <div id="setTimePainel">
  teste
