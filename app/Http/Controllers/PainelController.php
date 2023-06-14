@@ -71,14 +71,14 @@ class PainelController extends Controller
     {
 
         if ($id2 == 1) { //Altera para modo parar
-            backup::where('id', $id)->update(['status_bkp' => '2']);
+            backup::where('id', $id)->update(['status_bkp' => '2', 'status_temp' => '']);
         }
         if ($id2 == 2) { //Altera para modo gravar
             backup::where('id', $id)->update(['status_bkp' => '1']);
 
         }
-
-        return redirect('/painel');
+        return redirect('/painel'); 
+       
     }
 
     public function destroy($id)
@@ -91,6 +91,7 @@ class PainelController extends Controller
 
     public function teste()
     {
+        
         return view('teste');
     }
 

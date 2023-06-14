@@ -79,25 +79,36 @@ function rodaGravacao()
         exit();
     }
 
-    $result = $mysqli->query("SELECT B.* , C.id AS id_backup, C.banco_id, C.status_bkp
+    $result = $mysqli->query("SELECT B.* , C.id AS id_backup, C.banco_id, C.status_bkp, C.status_temp
                               FROM bancos B
                               INNER JOIN backups C ON B.id = C.banco_id
                               WHERE C.status_bkp = '1' ");
 
+    $min = date('i');
+
     while ($row = $result->fetch_assoc()) {
-        if ($row['status_bkp'] == 1) {
-            $row['id_backup'];
-            sleep(8);
-            echo "<script>setInterval(function() { $('#setTimePainel').load('/painel'); }, 240000);</script>";
-            backupDatabaseAllTables($row['hostname'], $row['username'], $row['password'], $row['dbname'], $row['id_backup']);
-            break;
+
+        if ($row['status_bkp'] == 1 && $row['status_temp'] == "") {
+
+            $id_backup = $row['id_backup'];
+            //backupDatabaseAllTables($row['hostname'], $row['username'], $row['password'], $row['dbname'], $row['id_backup']);
+            $mysqli->query("UPDATE backups C SET C.status_temp = $min WHERE C.id = $id_backup AND C.status_temp = '' ");
         }
 
-    }
-}
-sleep(2);
-echo "<div id='setTimePainel'>";
-rodaGravacao();
-echo "</div>"; 
+        $temp = intval($row['status_temp']);
+        $dif = $min - $temp;
 
-?>
+        if ($row['status_bkp'] == 1 && $dif >= 2) {
+
+            $id_backup = $row['id_backup'];
+            backupDatabaseAllTables($row['hostname'], $row['username'], $row['password'], $row['dbname'], $row['id_backup']);
+            $mysqli->query("UPDATE backups C SET C.status_temp = $min WHERE C.id = $id_backup AND C.status_temp >= $dif ");
+        }
+       
+    }
+    sleep(5);
+   // echo "<script>setInterval(function() { $('#setTimePainel').load('/painel'); }, 120000);</script>";
+}
+/*echo "<div id='setTimePainel'>";
+rodaGravacao();
+echo "</div>"; */

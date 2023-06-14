@@ -30,8 +30,19 @@
 </script>
 <div id="chat"></div>
 
-
+<?php //echo "<script>setInterval(function() { $('#setTimePainel').load('/teste'); }, 120000);</script>"; ?>
 <div id="setTimePainel">
- teste
-    
+ 
+ <?//= $min = date('i') . 'm'; ?>
+ <?php
+    $m1 = 18;
+    $m2 = 23;
+    $intervalo = ($m2 - $m1) ;
+    if ($intervalo >= 4){
+      echo $intervalo;
+      echo "intervalo ok";
+    }
+
+ ?>
+  
 </div>
