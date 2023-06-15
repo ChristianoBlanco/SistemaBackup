@@ -66,7 +66,7 @@
             <div id='setTimePainel'>
                 @php
                    //sleep(5);
-                  echo "<script>setTimeout(function(){window.location.reload();} , 180000);</script>";
+                  echo "<script>setTimeout(function(){window.location.reload();} , 600000);</script>";
                   //echo $min = date('s') . 's';
                 @endphp   
             <table class="table" id="tabelaGravacoes">

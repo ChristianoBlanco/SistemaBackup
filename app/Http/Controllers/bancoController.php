@@ -23,7 +23,7 @@ class bancoController extends Controller
     {
 
         //$listaTabela = DB::table('bancos AS b')->select('b.*')->paginate(10);
-        $listaTabela = banco::paginate(10);
+        $listaTabela = banco::paginate(5);
 
         return $listaTabela;
     }

@@ -91,18 +91,19 @@ function rodaGravacao()
         if ($row['status_bkp'] == 1 && $row['status_temp'] == "") {
 
             $id_banco = $row['id'];
-            $mysqli->query("UPDATE backups C SET C.status_temp = $min WHERE C.banco_id = $id_banco AND C.status_temp = '' ");
             //backupDatabaseAllTables($row['hostname'], $row['username'], $row['password'], $row['dbname'], $row['id_backup']);
+            $mysqli->query("UPDATE backups C SET C.status_temp = $min WHERE C.banco_id = $id_banco AND C.status_temp = '' ");
+            
         }
 
         $temp = intval($row['status_temp']);
-        $dif = $min - $temp;
+        $dif = abs($min - $temp);
 
-        if ($row['status_bkp'] == 1 && $dif >= 3) {
+        if ($row['status_bkp'] == 1 && $dif >= 10) {
 
-            $id_backup = $row['id_backup'];
+            $id_banco = $row['id'];
             backupDatabaseAllTables($row['hostname'], $row['username'], $row['password'], $row['dbname'], $row['id_backup']);
-            $mysqli->query("UPDATE backups C SET C.status_temp = $min WHERE C.id = $id_backup AND C.status_temp >= $dif ");
+            $mysqli->query("UPDATE backups C SET C.status_temp = $min WHERE C.banco_id = $id_banco AND C.status_temp >= $dif ");
         }
        
     }
