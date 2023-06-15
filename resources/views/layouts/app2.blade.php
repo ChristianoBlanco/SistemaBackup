@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -105,7 +106,7 @@
             </div>
 
         </nav>
-
+        
         @hasSection ('content')
         @yield('content')
         @endif

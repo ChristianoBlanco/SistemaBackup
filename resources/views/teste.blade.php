@@ -12,19 +12,22 @@
 <script>
   //var intervalo = setInterval(function() { $('#setTimePainel'); }, 60000);
 
-  //window.setTimeout("location.reload()", 700);
-/*  let retornoPHP = '<?php meuteste(); ?>' ;
 
-  setInterval(myFunc,2000);
-
-  function myFunc() {
-  document.getElementById("setTimePainel").innerHTML += retornoPHP;
-  
-} */
-
-//var intervalo = setInterval(function() { $('#setTimePainel').load('/teste'); }, 1000);
+ setTimeout('#setTimePainel' , 1000)
 
 
+
+
+//var intervalo = setInterval(function() { $('#setTimePainel').load(location.href); }, 1000);
+
+//setTimeout(function(){window.location.reload();} , 60000);
+
+/*function timedRefresh(timeoutPeriod) {
+	setTimeout("location.reload(true);",timeoutPeriod);
+}
+window.onload = timedRefresh(5000); */
+
+//setTimeout( function () { $( "#testdiv" ).fadeOut(1500); }, 10000);
 
 
 </script>
@@ -33,16 +36,7 @@
 <?php //echo "<script>setInterval(function() { $('#setTimePainel').load('/teste'); }, 120000);</script>"; ?>
 <div id="setTimePainel">
  
- <?//= $min = date('i') . 'm'; ?>
- <?php
-    $m1 = 18;
-    $m2 = 23;
-    $intervalo = ($m2 - $m1) ;
-    if ($intervalo >= 4){
-      echo $intervalo;
-      echo "intervalo ok";
-    }
+ <?= $min = date('s') . 's'; ?>
 
- ?>
   
 </div>

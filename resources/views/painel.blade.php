@@ -1,4 +1,5 @@
 @extends('layouts.app2')
+
 @section('content')
 
 <?php 
@@ -11,7 +12,7 @@
     <!-- row -->
     <div class="row">
         <div class="col">
-            <p class="text-white mt-5 mb-5"><b>Gravações em andamento</b></p>
+            <p class="text-white mt-5 mb-5"><b>Gravações MySQL</b></p>
         </div>
 
         <!-- Button trigger modal -->
@@ -62,7 +63,12 @@
 
     <div class="col-12 tm-block-col">
         <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-            
+            <div id='setTimePainel'>
+                @php
+                   //sleep(5);
+                  echo "<script>setTimeout(function(){window.location.reload();} , 180000);</script>";
+                  //echo $min = date('s') . 's';
+                @endphp   
             <table class="table" id="tabelaGravacoes">
                 <thead>
                     <tr>
@@ -95,6 +101,8 @@
                     </tr>
                 </tbody>
             </table>
+
+            </div>
 
             <br>
             <nav id="paginationNav">

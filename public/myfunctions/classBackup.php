@@ -90,15 +90,15 @@ function rodaGravacao()
 
         if ($row['status_bkp'] == 1 && $row['status_temp'] == "") {
 
-            $id_backup = $row['id_backup'];
+            $id_banco = $row['id'];
+            $mysqli->query("UPDATE backups C SET C.status_temp = $min WHERE C.banco_id = $id_banco AND C.status_temp = '' ");
             //backupDatabaseAllTables($row['hostname'], $row['username'], $row['password'], $row['dbname'], $row['id_backup']);
-            $mysqli->query("UPDATE backups C SET C.status_temp = $min WHERE C.id = $id_backup AND C.status_temp = '' ");
         }
 
         $temp = intval($row['status_temp']);
         $dif = $min - $temp;
 
-        if ($row['status_bkp'] == 1 && $dif >= 2) {
+        if ($row['status_bkp'] == 1 && $dif >= 3) {
 
             $id_backup = $row['id_backup'];
             backupDatabaseAllTables($row['hostname'], $row['username'], $row['password'], $row['dbname'], $row['id_backup']);
@@ -106,9 +106,7 @@ function rodaGravacao()
         }
        
     }
-    sleep(5);
    // echo "<script>setInterval(function() { $('#setTimePainel').load('/painel'); }, 120000);</script>";
 }
-/*echo "<div id='setTimePainel'>";
 rodaGravacao();
-echo "</div>"; */
+
