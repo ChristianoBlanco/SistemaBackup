@@ -65,7 +65,7 @@
         <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
             <div id='setTimePainel'>
                 @php
-                   //sleep(5);
+                  sleep(1);
                   echo "<script>setTimeout(function(){window.location.reload();} , 600000);</script>";
                   //echo $min = date('s') . 's';
                 @endphp   

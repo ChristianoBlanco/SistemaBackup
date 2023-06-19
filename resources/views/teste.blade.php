@@ -1,42 +1,32 @@
-<?php 
-  function meuteste(){
-    $d = date('H:i:s');
-      echo $d; 
-      echo "</br>";
-  }
+<?php
+
+/* 
+// Server information
+$server   = "127.0.0.1\sqlexpress,1434";
+$database = "MeuTeste";
+$uid      = ""; 
+$pwd      = "";
+
+// Connection
+try {
+    $conn = new PDO("sqlsrv:server=$server;Database=$database", $uid, $pwd);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch( PDOException $e ) {
+    die( "Error connecting to SQL Server".$e->getMessage());
+}
+
+$sql = "SELECT * FROM Tabela2";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$user = $stmt->fetch();
+
+echo $user['id'].'<br>';
+echo $user['teste'];
+*/
+
+require_once './myfunctions/classBackupSQLSRV.php';
+
+
 ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-
-<script>
-  //var intervalo = setInterval(function() { $('#setTimePainel'); }, 60000);
-
-
- setTimeout('#setTimePainel' , 1000)
-
-
-
-
-//var intervalo = setInterval(function() { $('#setTimePainel').load(location.href); }, 1000);
-
-//setTimeout(function(){window.location.reload();} , 60000);
-
-/*function timedRefresh(timeoutPeriod) {
-	setTimeout("location.reload(true);",timeoutPeriod);
-}
-window.onload = timedRefresh(5000); */
-
-//setTimeout( function () { $( "#testdiv" ).fadeOut(1500); }, 10000);
-
-
-</script>
-<div id="chat"></div>
-
-<?php //echo "<script>setInterval(function() { $('#setTimePainel').load('/teste'); }, 120000);</script>"; ?>
-<div id="setTimePainel">
- 
- <?= $min = date('s') . 's'; ?>
-
   
-</div>
