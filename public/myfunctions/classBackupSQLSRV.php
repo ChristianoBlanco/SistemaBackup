@@ -12,31 +12,51 @@ function backupDatabaseAllTables($dbserver, $dbdatabase, $dbuid, $dbpwd){
 try {
     $conn = new PDO("sqlsrv:server=$server;Database=$database", $uid, $pwd);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch( PDOException $e ) {
-    die( "Error connecting to SQL Server".$e->getMessage());
+} catch (PDOException $e) {
+    die("Error connecting to SQL Server" . $e->getMessage());
 }
 
 $sql = "
-declare 
-@path varchar(100),
-@fileDate varchar(20),
-@fileName varchar(140)
+DECLARE @date VARCHAR(19)
+SET @date = CONVERT(VARCHAR(19), GETDATE(), 126)
+SET @date = REPLACE(@date, ':', '-')
+SET @date = REPLACE(@date, 'T', '-')
 
-SET @path = 'c:\backupsSQLSV\'   
-SELECT @fileDate = CONVERT(VARCHAR(20), GETDATE(), 112)  
-SET @fileName = @path + 'ProdDB_' + @fileDate + '.bak' 
-BACKUP DATABASE MeuTeste TO DISK = @fileName
+DECLARE @fileName VARCHAR(100)
+SET @fileName = ('c:\backupsSQLSV\BackUp_' + @date + '.bak')
+
+BACKUP DATABASE MeuTeste
+TO DISK = @fileName
+WITH
+    FORMAT,
+    STATS = 1,
+    MEDIANAME = 'SQLServerBackups',
+    NAME = 'Full Backup of MeuTeste';
 ";
 
 try {
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 } catch (PDOException $e) {
-    die ("Error executing query. ".$e->getMessage());
+    die("Error executing query. " . $e->getMessage());
 }
 
+// Clear buffer
+try {
+    while ($stmt->nextRowset() != null) {}
+    ;
+    echo "Success";
+} catch (PDOException $e) {
+    die("Error executing query. " . $e->getMessage());
+}
+
+// End
+$stmt = null;
+$conn = null;
+
+
 
 
 }
-backupDatabaseAllTables("127.0.0.1\sqlexpress,1434","MeuTeste","sa","123456");
+backupDatabaseAllTables("127.0.0.1\sqlexpress,1433","MeuTeste","root","123456");
 ?>
