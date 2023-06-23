@@ -1,7 +1,7 @@
 <?php
 // Server information
 
-function backupDatabaseAllTables($dbserver, $dbdatabase, $dbuid, $dbpwd)
+function backupDatabaseAllTables($dbserver, $dbdatabase, $dbuid, $dbpwd, $db_id_bkp)
 {
 
     $server = $dbserver;
@@ -23,19 +23,24 @@ function backupDatabaseAllTables($dbserver, $dbdatabase, $dbuid, $dbpwd)
     $seg = date('s') . 's';
     $bd_name = $database;
     $ano = date('Y');
-//$ano = '2024';
 
-//CRIA A PASTA RAIZ PARA ARMAZENAR OS BACKUPS
-  
-     
+    //CRIA A PASTA RAIZ PARA ARMAZENAR OS BACKUPS
+    if (!is_dir('c:/backupsSQLSV/' . $db_id_bkp . '_' . $bd_name)) {
+
+        mkdir('c:/backupsSQLSV/' . $db_id_bkp . '_' . $bd_name , 777, true);
+    }
+
     $sql = "
 DECLARE @date VARCHAR(19)
 SET @date = CONVERT(VARCHAR(19), GETDATE(), 126)
 SET @date = REPLACE(@date, ':', '-')
 SET @date = REPLACE(@date, 'T', '-')
-
+DECLARE @campo1 VARCHAR(15)
+DECLARE @campo2 VARCHAR(15)
+SET @campo1 = '" . $db_id_bkp . "_" ."'
+SET @campo2 = '" . $bd_name . "'
 DECLARE @fileName VARCHAR(100)
-SET @fileName = ('c:\backupsSQLSV\BackUp_' + @date + '.bak')
+SET @fileName = ('c:\backupsSQLSV\'+ @campo1 + @campo2 + '\BackUp_' + @campo2 + '_' + @date + '.bak')
 
 BACKUP DATABASE MeuTeste
 TO DISK = @fileName
@@ -67,4 +72,4 @@ WITH
     $conn = null;
 
 }
-backupDatabaseAllTables("127.0.0.1\sqlexpress,1433", "MeuTeste", "root", "123456");
+backupDatabaseAllTables("127.0.0.1\sqlexpress,1433", "MeuTeste", "root", "123456","1000");
