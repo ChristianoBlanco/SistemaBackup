@@ -14,6 +14,7 @@ class banco extends Model
     protected $table = "bancos";
 
     protected $fillable = [
+        "tipo_bd",
         "name",
         "hostname",
         "username",

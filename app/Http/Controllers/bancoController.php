@@ -47,13 +47,14 @@ class bancoController extends Controller
      */
     public function store(Request $request)
     {
-        $bancos = new banco();
-        $bancos->name =      $request->input('name');
-        $bancos->hostname =  $request->input('hostname');
-        $bancos->username =  $request->input('username');
-        $bancos->password =  $request->input('password');
-        $bancos->dbname =    $request->input('dbname');
-        $bancos->descricao = $request->input('descricao');
+        $bancos = new banco(); 
+        $bancos->tipo_bd   =  $request->input('tipobanco');
+        $bancos->name      =  $request->input('name');
+        $bancos->hostname  =  $request->input('hostname');
+        $bancos->username  =  $request->input('username');
+        $bancos->password  =  $request->input('password');
+        $bancos->dbname    =  $request->input('dbname');
+        $bancos->descricao =  $request->input('descricao');
         $bancos->save();
         
         return redirect('/painelBanco')->with('msg_status', 'Dados cadastrados com sucesso !');

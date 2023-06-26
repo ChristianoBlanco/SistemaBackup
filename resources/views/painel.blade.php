@@ -74,11 +74,11 @@
                     <tr>
                         <th scope="col"># ID</th>
                         <th scope="col">STATUS</th>
-                        <th scope="col">BANCO DE DADOS</th>
+                        <th scope="col">TIPO</th>
+                        <th scope="col">BANCO</th>
                         <th scope="col">HOST</th>
-                        <th scope="col">DESCRIÇÃO</th>
                         <th scope="col">AÇÕES</th>
-                        <th scope="col"> </th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>

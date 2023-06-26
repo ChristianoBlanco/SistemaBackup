@@ -21,6 +21,10 @@ Route::get('/register', function (){
     return view('auth.register'); // Não alterar essa linha !!1 Faz parte do Auth do Laravel. Só fazer alteração caso necessário.
 });
 
+Route::get('/register2', function (){
+    return view('auth.registerFirst'); // Não alterar essa linha !!1 Faz parte do Auth do Laravel. Só fazer alteração caso necessário.
+});
+
 Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']); 
@@ -42,6 +46,7 @@ Route::post('/cadBanco-inc','App\Http\Controllers\bancoController@store')->middl
 Route::get('/ediBanco-edt/{id}','App\Http\Controllers\bancoController@edit')->middleware(['auth']);
 Route::post('/ediBanco-upd/{id}','App\Http\Controllers\bancoController@update')->middleware(['auth']);
 Route::get('/delBanco-hard/{id}','App\Http\Controllers\bancoController@destroy')->middleware(['auth']);
+
 //Route::get('/delBanco-soft/{id}','App\Http\Controllers\bancoController@softdelete');
 
 

@@ -14,7 +14,15 @@
       <div class="col-12 tm-block-col">
         <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
            <form method="POST" action="{{ url('/cadBanco-inc')}}" enctype="multipart/form-data" >
-                @csrf 
+                @csrf
+                <div class="form-group col-lg-6" >
+                  <label for="name">Tipo do banco</label>
+                  <select id="selBanco" class="custom-select col-md-11" name="tipobanco"  required>
+                    <option selected></option>
+                    <option value="1">MySQL</option>
+                    <option value="2">SQL Server</option>
+                </select>
+                </div>     
             <div class="form-group col-lg-6" style="float:left" >
               <label for="name">Nome do banco (apelido)</label>
               <input

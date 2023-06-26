@@ -15,12 +15,13 @@ class CreateBancosTable extends Migration
     {
         Schema::create('bancos', function (Blueprint $table) {
             $table->id();
-            $table->string('name', '50');
+            $table->Integer('tipo_bd');
+            $table->string('name', '26');
             $table->string('hostname', '50');
             $table->string('username', '50');
-            $table->string('password', '50');
+            $table->string('password', '50')->nullable();
             $table->string('dbname', '50');
-            $table->string('descricao', '30');
+            $table->string('descricao', '26')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

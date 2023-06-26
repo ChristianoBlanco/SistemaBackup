@@ -1,7 +1,7 @@
 <?php
 // Server information
 
-function backupDatabaseAllTables($dbserver, $dbdatabase, $dbuid, $dbpwd, $db_id_bkp)
+function backupDatabaseTablesServer($dbserver, $dbdatabase, $dbuid, $dbpwd, $db_id_bkp)
 {
 
     $server = $dbserver;
@@ -72,4 +72,4 @@ WITH
     $conn = null;
 
 }
-backupDatabaseAllTables("127.0.0.1\sqlexpress,1433", "MeuTeste", "root", "123456","1000");
+backupDatabaseTablesServer("127.0.0.1\sqlexpress,1433", "MeuTeste", "root", "123456","1000");

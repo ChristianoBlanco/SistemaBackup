@@ -66,14 +66,22 @@ function montarLinha(banco) {
         botaoSalva = '<a href=" ' ;
         
     }
+
+    if(banco.tipo_bd == 1){
+       
+        tipoBd = 'MySQL';
+
+    }else{
+        tipoBd = 'SQL';
+    }
     
     
     return '<tr>' +
     '  <td>'+' # '+ + banco.id_backup + '</td>' +
         statusString +
+        '  <td>' + tipoBd + '</td>' +
         '  <td>' + banco.dbname + '</td>' +
         '  <td>' + banco.hostname + '</td>' +
-        '  <td>' + banco.descricao + '</td>' +
         botaoGrava +
         ' "><i class="far fa-caret-square-right" style="font-size:23px; color:#32CD32" title="Gravar"></i></a>' +
          botaoSalva +

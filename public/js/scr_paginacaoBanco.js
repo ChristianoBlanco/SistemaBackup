@@ -53,9 +53,19 @@ function montarPaginator(data) {
 }
 
 function montarLinha(banco) {
+    
+    
+    if(banco.tipo_bd == 1){
+        tipoBd = 'MySQL';
+
+    }else{
+        tipoBd = 'SQL';
+    }
+
     return '<tr>' +
         '  <th scope="row">' + banco.id + '</th>' +
         '  <td>' + banco.name + '</td>' +
+        '  <td>' + tipoBd + '</td>' +
         '  <td>' + banco.hostname + '</td>' +
         '  <td>' + banco.descricao + '</td>' +
         '  <td><a href="/ediBanco-edt/' + banco.id +

@@ -17,11 +17,7 @@ class PainelController extends Controller
 
     public function index()
     {
-        /* $listaTabla = DB::table('bancos AS b')->select('c.id AS id_backup','c.banco_id', 'c.status_bkp', 'b.id', 'b.dbname', 'b.hostname', 'b.descricao')
-        ->join('backups AS c', 'c.banco_id', '=', 'b.id')
-        ->whereIn('c.status_bkp', [1, 2]); */
-
-        //Seleciona os itens que compoe o select da página painel
+         //Seleciona os itens que compoe o select da página painel
         $selects = banco::all();
 
         return view('/painel', compact('selects'));
@@ -32,7 +28,7 @@ class PainelController extends Controller
         //return "Index Painel de Listagem de Gravações Backup";
         //return view('painel');
 
-        $listaTabla = DB::table('bancos AS b')->select('c.id AS id_backup', 'c.banco_id', 'c.status_bkp', 'b.id', 'b.dbname', 'b.hostname', 'b.descricao', 'b.username', 'b.password')
+        $listaTabla = DB::table('bancos AS b')->select('c.id AS id_backup', 'c.banco_id', 'c.status_bkp', 'b.id', 'b.tipo_bd', 'b.dbname', 'b.hostname', 'b.descricao', 'b.username', 'b.password')
             ->join('backups AS c', 'c.banco_id', '=', 'b.id')
             ->whereIn('c.status_bkp', [1, 2])
             ->paginate(10);
@@ -57,6 +53,7 @@ class PainelController extends Controller
               //$res->id;
               //Insere na tabela backups o banco_id e o status default da gravação
               $bacukps = new backup();
+              $bacukps->tipo_bd_id = $res->tipo_bd;
               $bacukps->banco_id = $res->id;
               $bacukps->status_bkp = 2;
               $bacukps->save();

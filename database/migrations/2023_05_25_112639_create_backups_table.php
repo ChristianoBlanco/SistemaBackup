@@ -17,8 +17,9 @@ class CreateBackupsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('banco_id')->nullable();
             $table->foreign('banco_id')->references('id')->on('bancos')->nullOnDelete();
+            $table->integer('tipo_bd_id');
             $table->string('status_bkp', '2');
-            $table->string('status_temp', '2');
+            $table->string('status_temp', '2')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

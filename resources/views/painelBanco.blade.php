@@ -29,6 +29,7 @@
                     <tr>
                         <th scope="col"># ID</th>
                         <th scope="col">NOME DO BANCO</th>
+                        <th scope="col">TIPO</th>
                         <th scope="col">HOST</th>
                         <th scope="col">DESCRICAO</th>
                         <th scope="col">AÇÕES</th>
@@ -41,6 +42,7 @@
                         <td>
                           <!-- div class="tm-status-circle moving" --></div><?= ' ' ?>
                         </td>
+                        <td><?= ' ' ?></td>
                         <td><?= ' ' ?></td>
                         <td><?= ' ' ?></td>
                         <td><?= ' ' ?></td>

@@ -14,6 +14,7 @@ class backup extends Model
     protected $table = "backups";
 
     protected $fillable = [
+        "tipo_bd_id",
         "id_banco",
         "status_bkp"
         ];
