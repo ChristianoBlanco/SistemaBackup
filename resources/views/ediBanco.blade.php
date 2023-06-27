@@ -23,6 +23,7 @@
                 type="text"
                 value="{{ $bancos->name }}"
                 class="form-control"
+                required
               />
             </div>
             <div class="form-group col-lg-6" style="float:right" >
@@ -33,6 +34,7 @@
                 type="text"
                 value="{{ $bancos->hostname }}"
                 class="form-control"
+                required
               />
             </div>
             <div class="form-group col-lg-6" style="float:left">
@@ -43,6 +45,7 @@
                 type="text"
                 value="{{ $bancos->username }}"
                 class="form-control"
+                required
               />
             </div>
             <div class="form-group col-lg-6" style="float:right">
@@ -63,6 +66,7 @@
                 type="text"
                 value="{{ $bancos->dbname }}"
                 class="form-control"
+                required
               />
             </div>
             <div class="form-group col-lg-6" style="float:right">

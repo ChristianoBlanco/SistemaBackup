@@ -21,9 +21,12 @@ Route::get('/register', function (){
     return view('auth.register'); // Não alterar essa linha !!1 Faz parte do Auth do Laravel. Só fazer alteração caso necessário.
 });
 
-Route::get('/register2', function (){
+/* Route::get('/register2', function (){
     return view('auth.registerFirst'); // Não alterar essa linha !!1 Faz parte do Auth do Laravel. Só fazer alteração caso necessário.
-});
+}); */
+Route::get('/register2','App\Http\Controllers\UsuarioController@create');
+Route::post('/register2-inc','App\Http\Controllers\UsuarioController@store');
+
 
 Auth::routes();
 

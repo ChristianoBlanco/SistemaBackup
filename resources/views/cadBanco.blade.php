@@ -30,6 +30,7 @@
                 name="name"
                 type="text"
                 class="form-control"
+                required
               />
             </div>
             <div class="form-group col-lg-6" style="float:right" >
@@ -39,6 +40,7 @@
                 name="hostname"
                 type="text"
                 class="form-control"
+                required
               />
             </div>
             <div class="form-group col-lg-6" style="float:left">
@@ -48,6 +50,7 @@
                 name="username"
                 type="text"
                 class="form-control"
+                required
               />
             </div>
             <div class="form-group col-lg-6" style="float:right">
@@ -66,6 +69,7 @@
                 name="dbname"
                 type="text"
                 class="form-control"
+                required
               />
             </div>
             <div class="form-group col-lg-6" style="float:right">
