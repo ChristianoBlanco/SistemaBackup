@@ -4,10 +4,6 @@ function backupDatabaseAllTables($dbhost, $dbusername, $dbpassword, $dbname, $db
     date_default_timezone_set('America/Sao_Paulo');
 
     $db = new mysqli($dbhost, $dbusername, $dbpassword, $dbname);
-    
-    /*if (!$db) {
-        die('Could not connect: ' . $db->errno);
-    } */
 
     if ($tables == '*') {
         $tables = array();
@@ -20,7 +16,6 @@ function backupDatabaseAllTables($dbhost, $dbusername, $dbpassword, $dbname, $db
     }
 
     $return = '';
-    $return .= 'SET FOREIGN_KEY_CHECKS=0;'."\n";
 
     foreach ($tables as $table) {
         $result = $db->query("SELECT * FROM $table");
@@ -183,18 +178,18 @@ function rodaGravacao()
         $temp = intval($row['status_temp']);
         $dif = abs($min - $temp);
 
-        if ($row['status_bkp'] == 1 && $row['tipo_bd_id'] == 1 && $dif >= 4) {
+        if ($row['status_bkp'] == 1 && $row['tipo_bd_id'] == 1 && $dif >= 10) {
 
             $id_banco = $row['id'];
             backupDatabaseAllTables($row['hostname'], $row['username'], $row['password'], $row['dbname'], $row['id_backup']);
-            $mysqli->query("UPDATE backups C SET C.status_temp = $min WHERE C.banco_id = $id_banco ");
+            $mysqli->query("UPDATE backups C SET C.status_temp = $min WHERE C.banco_id = $id_banco AND c.status_temp >= $dif");
         }
 
-        if($row['status_bkp'] == 1 && $row['tipo_bd_id'] == 2 && $dif >= 4){
+        if($row['status_bkp'] == 1 && $row['tipo_bd_id'] == 2 && $dif >= 10){
 
             $id_banco = $row['id'];
             backupDatabaseTablesServer($row['hostname'], $row['dbname'], $row['username'], $row['password'], $row['id_backup']);
-            $mysqli->query("UPDATE backups C SET C.status_temp = $min WHERE C.banco_id = $id_banco ");
+            $mysqli->query("UPDATE backups C SET C.status_temp = $min WHERE C.banco_id = $id_banco  AND c.status_temp >= $dif");
         }
 
     }

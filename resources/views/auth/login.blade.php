@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<?php require_once "./myfunctions/conexao.php"; ?>
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -46,6 +46,20 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
+                            <?php 
+                              $result = $mysqli->query("SELECT * FROM users ");
+                              $rowcount = $result->num_rows;
+                            ?>
+                               
+                            <?php 
+                              if($rowcount == "0" || $rowcount == ""){
+                            ?>
+                                 <a href="{{ url('/register2')}}" class="nav-item" style="color:deepskyblue; margin-left: 30px;" >Primeiro Acesso </a>
+                            <?php         
+                              }else{
+
+                              }
+                            ?>    
                             </div>
                         </div>
                     </form>
