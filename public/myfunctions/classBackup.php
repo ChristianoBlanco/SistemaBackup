@@ -102,31 +102,20 @@ function backupDatabaseTablesServer($dbserver, $dbdatabase, $dbuid, $dbpwd, $db_
     $ano = date('Y');
 
     //CRIA A PASTA RAIZ PARA ARMAZENAR OS BACKUPS
-    if (!is_dir('c:/backupsSQLSV/' . $db_id_bkp . '_' . $bd_name)) {
+    /*if (!is_dir('C:/Program Files/Microsoft SQL Server/MSSQL16.MSSQLSERVER/MSSQL/Backup/' . $db_id_bkp . '_' . $bd_name)) {
 
-        mkdir('c:/backupsSQLSV/' . $db_id_bkp . '_' . $bd_name, 777, true);
-    }
+        mkdir('C:/Program Files/Microsoft SQL Server/MSSQL16.MSSQLSERVER/MSSQL/Backup/' . $db_id_bkp . '_' . $bd_name, 777, true);
+    } */
 
     $sql = "
-DECLARE @date VARCHAR(19)
-SET @date = CONVERT(VARCHAR(19), GETDATE(), 126)
-SET @date = REPLACE(@date, ':', '-')
-SET @date = REPLACE(@date, 'T', '-')
-DECLARE @campo1 VARCHAR(15)
-DECLARE @campo2 VARCHAR(15)
-SET @campo1 = '" . $db_id_bkp . "_" . "'
-SET @campo2 = '" . $bd_name . "'
-DECLARE @fileName VARCHAR(100)
-SET @fileName = ('c:\backupsSQLSV\'+ @campo1 + @campo2 + '\BackUp_' + @campo2 + '_' + @date + '.bak')
-
-BACKUP DATABASE MeuTeste
-TO DISK = @fileName
-WITH
-    FORMAT,
-    STATS = 1,
-    MEDIANAME = 'SQLServerBackups',
-    NAME = 'Full Backup of MeuTeste';
-";
+        BACKUP DATABASE ".$bd_name."
+        TO DISK = 'Backup_".$data.$hora.$min.$seg."_".$bd_name.".bak'
+        WITH
+            FORMAT,
+            STATS = 1,
+            MEDIANAME = 'SQLServerBackups',
+            NAME = 'Full Backup of ".$bd_name."';
+    "; 
 
     try {
         $stmt = $conn->prepare($sql);
@@ -176,7 +165,7 @@ function rodaGravacao()
         if ($row['status_bkp'] == 1 && $row['status_temp'] == "") {
 
             $id_banco = $row['id'];
-            $mysqli->query("UPDATE backups C SET C.status_temp = $min WHERE C.banco_id = $id_banco AND C.status_temp = '' ");
+            $mysqli->query("UPDATE backups C SET C.status_temp = $min WHERE C.banco_id = $id_banco ");
 
         }
 

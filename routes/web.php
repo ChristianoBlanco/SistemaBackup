@@ -49,6 +49,7 @@ Route::post('/cadBanco-inc','App\Http\Controllers\bancoController@store')->middl
 Route::get('/ediBanco-edt/{id}','App\Http\Controllers\bancoController@edit')->middleware(['auth']);
 Route::post('/ediBanco-upd/{id}','App\Http\Controllers\bancoController@update')->middleware(['auth']);
 Route::get('/delBanco-hard/{id}','App\Http\Controllers\bancoController@destroy')->middleware(['auth']);
+Route::get('/download/{id}','App\Http\Controllers\bancoController@download')->middleware(['auth']);
 
 //Route::get('/delBanco-soft/{id}','App\Http\Controllers\bancoController@softdelete');
 

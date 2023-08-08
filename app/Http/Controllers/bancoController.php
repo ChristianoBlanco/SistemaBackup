@@ -108,6 +108,12 @@ class bancoController extends Controller
         return redirect('/painelBanco')->with('msg_status', 'Dados alterados com sucesso !');
     }
 
+    public function download($id)
+    {
+     
+       $tipo_banco = $id;
+       return view('/download', compact('tipo_banco'));
+    }
     /**
      * Remove the specified resource from storage.
      *
